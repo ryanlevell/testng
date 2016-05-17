@@ -33,6 +33,20 @@ public class FactoryDataProviderTest extends SimpleBaseTest {
   public void factoryWithNonStaticDataProviderShouldFail() {
     runTest(FactoryDataProviderStaticSampleErrorTest.class, 43, 44);
   }
+  
+  @Test(description = "Test @Factory(dataProvider) when the data provider returns an empty array (Issue #1030)")
+  public void factoryWithEmptyDataProviderArray() {
+    // runTest(FactoryDataProviderStaticEmptySampleTest.class, 43, 44);
+    TestNG tng = create(new Class[] { FactoryDataProviderStaticEmptySampleTest.class });
+    TestListenerAdapter tla = new TestListenerAdapter();
+    tng.addListener(tla);
+    tng.run();
+    
+    Assert.assertEquals(tla.getPassedTests().size(), 0);
+    Assert.assertEquals(tla.getFailedButWithinSuccessPercentageTests().size(), 0);
+    Assert.assertEquals(tla.getFailedTests().size(), 0);
+    Assert.assertEquals(tla.getSkippedTests().size(), 0);
+  }
 
   private void runTest(Class<?> cls, int n1, int n2) {
     TestNG tng = create(cls);

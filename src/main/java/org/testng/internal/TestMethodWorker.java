@@ -109,7 +109,10 @@ public class TestMethodWorker implements IWorker<ITestNGMethod> {
 
       // Invoke test method
       try {
-        invokeTestMethods(testMethod, testMthdInst.getInstance(), m_testContext);
+    	// fixes #1030 but silently hides user errors related to static tests and no-arg constructors
+    	if(Utils.canRun(testMthdInst.getInstance(), testMethod.getConstructorOrMethod().getMethod())) {
+          invokeTestMethods(testMethod, testMthdInst.getInstance(), m_testContext);
+        }
       }
       finally {
         invokeAfterClassMethods(testClass, testMthdInst);

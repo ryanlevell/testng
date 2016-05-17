@@ -30,7 +30,6 @@ import org.testng.annotations.ITestAnnotation;
 import org.testng.collections.Lists;
 import org.testng.internal.annotations.AnnotationHelper;
 import org.testng.internal.annotations.IAnnotationFinder;
-import org.testng.log.TextFormatter;
 import org.testng.reporters.XMLStringBuffer;
 import org.testng.xml.XmlClass;
 
@@ -776,6 +775,21 @@ public final class Utils {
       throw new TestNGException("Can't invoke " + method + ": either make it static or add "
           + "a no-args constructor to your class");
     }
+  }
+  
+  /**
+   * See if the test method can run in the current state.
+   * 
+   * @param instance Test class instance used to run the test, if non-static.
+   * @param method The test method.
+   * @return True if the test can be run, false otherwise.
+   */
+  public static boolean canRun(Object instance, Method method) {
+    boolean valid = true;
+    if (instance == null && method != null && ! Modifier.isStatic(method.getModifiers())) {
+      valid = false;
+    }
+    return valid;
   }
 
   public static void checkReturnType(Method method, Class<?>... returnTypes) {
