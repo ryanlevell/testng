@@ -12,6 +12,7 @@ import org.testng.ITestNGMethod;
 import org.testng.TestNGException;
 import org.testng.annotations.ITestAnnotation;
 import org.testng.annotations.ITestOrConfiguration;
+import org.testng.annotations.Test;
 import org.testng.collections.Lists;
 import org.testng.collections.Sets;
 import org.testng.internal.annotations.AnnotationHelper;
@@ -106,6 +107,12 @@ public class MethodHelper {
         }
         Method maybeReferringTo = findMethodByName(m, regexp);
         if (maybeReferringTo != null) {
+        	
+          Test testAnnotation = maybeReferringTo.getAnnotation(Test.class);
+          if(testAnnotation != null) {
+        	continue;
+          }
+        	
           throw new TestNGException(canonicalMethodName + "() is depending on method "
               + maybeReferringTo + ", which is not annotated with @Test or not included.");
         }
