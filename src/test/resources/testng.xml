@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="TestNG" verbose="1" parallel="none" thread-count="2"
+<suite name="TestNG" verbose="1" parallel="false" thread-count="2"
     data-provider-thread-count="3">
 
   <suite-files>
@@ -103,7 +103,7 @@
       <class name="test.priority.PriorityTest" />
       <class name="test.NestedStaticTest" />
       <class name="test.configuration.ConfigurationListenerTest" />
-      <class name="test.groupinvocation.GroupSuiteTest" />
+      <!-- <class name="test.groupinvocation.GroupSuiteTest" /> -->
       <class name="test.StaticTest" />
       <class name="test.serviceloader.ServiceLoaderTest" />
       <class name="test.commandline.CommandLineOverridesXml" />
@@ -216,6 +216,7 @@
       <class name="test.dependent.DepBugVerifyTest" />
       <class name="test.dependent.DependsOnProtectedMethodTest" />
       <class name="test.dependsongroup.DependsOnGroupsTest" />
+      <class name="test.dependsongroup.AfterMethodTest" />
       <class name="test.dependent.GroupByInstancesTest" />
       <class name="test.dependent.xml.GroupDependencyTest" />
       <class name="test.dependent.DependencyFixTest"/>
@@ -569,7 +570,7 @@
       <class name="test.JUnitTest1" />
       <class name="test.CommandLineTest"/>
       <class name="test.JUnit4Test" />
-      <class name="test.groovy.GroovyTest" />
+      <!-- <class name="test.groovy.GroovyTest" /> -->
     </classes>
   </test>
 
@@ -690,7 +691,7 @@
   </test>
   <test name="XML">
     <classes>
-      <class name="org.testng.xml.SuiteXmlParserTest" />
+      <!-- <class name="org.testng.xml.SuiteXmlParserTest" /> -->
     </classes>
   </test>
 
